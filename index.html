@@ -88,12 +88,9 @@ Inheritance is another reason on focusing on objects and encapsulating the infor
 <p>6- The acknowledgment back to the student shows the result of registration processing as follows: </p>
 
 <pre><code>6-a If fees are owing, a bill is sent to the student; no registration is done and the acknowledgment contains the amount due. 
-6-b If prerequisites for a course are not
-</code></pre>
+6-b If prerequisites for a course are not filled, the acknowledgment lists prerequisites not met and that course is not registered. 
 
-<p>filled, the acknowledgment lists prerequisites not met and that course is not registered. </p>
-
-<pre><code>6-c If the class is full, the student acknowledgment is marked with 'course closed.’
+6-c If the class is full, the student acknowledgment is marked with 'course closed.’
 6-d If a student is accepted into a class, the day, time, and room are printed next to the course number. Total tuition owed is computed and printed on the acknowledgment. 
 </code></pre>
 
@@ -101,11 +98,13 @@ Inheritance is another reason on focusing on objects and encapsulating the infor
 
 <p>8- Course enrollment reports are prepared for the instructors.</p>
 
-<p>Classes :</p>
+<h3>
+<a id="classes-" class="anchor" href="#classes-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Classes :</h3>
 
 <p>student, registration request form, registration’s office &amp; clerk (defined together as registration Manager), Accounts Receivable subsystem, course, class, acknowledgment, bill, instructor</p>
 
-<p>Attributes : </p>
+<h3>
+<a id="attributes-" class="anchor" href="#attributes-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attributes :</h3>
 
 <p>student: fee, transcript, social security number.
 registration request form : student Name, Major, social security number, course offerings. 
@@ -120,7 +119,8 @@ bill : fees
 instructor : enrollment reports</li>
 </ul>
 
-<p>Operations : </p>
+<h3>
+<a id="operations-" class="anchor" href="#operations-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Operations :</h3>
 
 <p>student: sendForm(), getRegistrationStatus().
 registration request form : showForm(). 
