@@ -7,8 +7,9 @@ public class RegistrationSystem {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		RegistrationForm form = new RegistrationForm();
+		form.showForm();
+		
 	}
 
 }
