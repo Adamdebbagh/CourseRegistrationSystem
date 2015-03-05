@@ -16,21 +16,23 @@ import java.awt.event.WindowEvent;
 public class RegistrationForm extends Frame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	String msg = ""; 
 	
-	Label  titleLabel  = new Label("Registration Form",Label.CENTER);
-	Label  nameLabel = new Label("Name:",Label.LEFT);
-	Label  ssnLabel = new Label("Social Security Number",Label.LEFT);
-	Label  courseOfferingsLabel = new Label("Courses:",Label.LEFT);
+	protected String message = "";
+	public static boolean sent;
 	
-	Button button = new Button("save");
-	TextField nameField = new TextField();
-	TextField ssnField = new TextField();
-	Choice course = new Choice();
+	private Label  titleLabel  = new Label("Registration Form",Label.CENTER);
+	private Label  nameLabel = new Label("Name:",Label.LEFT);
+	private Label  ssnLabel = new Label("Social Security Number",Label.LEFT);
+	private Label  courseOfferingsLabel = new Label("Courses:",Label.LEFT);
+	
+	public Button button = new Button("save");
+	public TextField nameField = new TextField();
+	public TextField ssnField = new TextField();
+	public Choice course = new Choice();
 	  
 
 	public RegistrationForm() {
-		
+
 		addWindowListener(new myWindowAdapter());
 
 		setBackground(Color.LIGHT_GRAY);
@@ -66,28 +68,48 @@ public class RegistrationForm extends Frame implements ActionListener{
 	}
 	
 	public void paint(Graphics g){
-		g.drawString(msg,170,80);
+		g.drawString(message,170,80);
 		}
 	
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
+		RegistrationManager rm = new RegistrationManager();
 		
 		if(actionEvent.getActionCommand().equals("save")){
-			msg = "Registration Form saved!";
-		   setForeground(Color.DARK_GRAY); 
-		   // get student Inputs
-		   String studentName = nameField.getText();
-		   String studentSSN = ssnField.getText();
-		   String coursePicked = course.getSelectedItem();
-		   System.out.println("student name : "+ studentName);
-		   System.out.println("student ssn : "+ studentSSN);
-		   System.out.println("student course : "+ coursePicked);
-		   
+			message = "Registration Form saved!";
+			setForeground(Color.DARK_GRAY); 
+			sendForm(rm);
+			rm.addStudentToList(rm.getStudentName());
+			sent = true;		   
+			System.out.println("sent value after click: " + sent);
+			System.out.println("Registration submission list size : " + rm.listSize);
 		   }
 		}
 
+	private void sendForm(RegistrationManager rm) {
+		// get student Inputs
+		   String studentName = nameField.getText();
+		   int studentSSN = Integer.parseInt(ssnField.getText());
+		   String coursePicked = course.getSelectedItem();
+		   
+		   rm.setStudentName(studentName);
+		   rm.setStudentSSN(studentSSN);
+		   rm.setCoursePicked(coursePicked);
+		   
+		   //sanity check
+		   System.out.println("RF-student name : "+ studentName);
+		   System.out.println("RF-student ssn : "+ studentSSN);
+		   System.out.println("RF-student course : "+ coursePicked);
+		   
+		   System.out.println("RM-student name : "+ rm.getStudentName());
+		   System.out.println("RM-student ssn : "+ rm.getStudentSSN());
+		   System.out.println("RM-student course : "+ rm.getCoursePicked());
+		   
+	}
+
 
 	public void showForm() {
+		
 		RegistrationForm  registrationForm = new RegistrationForm();
 		registrationForm.setSize(new Dimension(400,300));
 		registrationForm.setTitle("Student Registration Form");
@@ -99,6 +121,8 @@ public class RegistrationForm extends Frame implements ActionListener{
 		public void windowClosing(WindowEvent we){
 			 System.exit(0);
 		}
-	}	 
+	}
+
+	
 }
 

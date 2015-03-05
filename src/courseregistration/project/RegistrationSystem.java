@@ -1,15 +1,16 @@
 package courseregistration.project;
 
 public class RegistrationSystem {
-
-	public RegistrationSystem() {
-		// TODO Auto-generated constructor stub
-	}
+	
+	static RegistrationForm form = new RegistrationForm();
+	static RegistrationManager rm = new RegistrationManager();
+	public RegistrationSystem() {}
 
 	public static void main(String[] args) {
-		RegistrationForm form = new RegistrationForm();
-		form.showForm();
-		
-	}
-
+	
+		// 1- on launch, show student a registration Form.
+		//    on form Submitted, send data to Registration Manager (clerk). 	
+			form.showForm();
+			
+  }
 }
