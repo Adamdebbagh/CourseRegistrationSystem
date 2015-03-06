@@ -12,6 +12,7 @@ public class AccountsReceivable {
 	public class StudentAccount {
 	protected double feeOwed;
 	protected String name;
+	
 	public StudentAccount(String name,double feeOwed){	
 		this.name = name;
 		this.feeOwed = feeOwed;
@@ -23,7 +24,7 @@ public class AccountsReceivable {
 	public AccountsReceivable() {
 
 		studentsData.add(new StudentAccount("adam",0));
-		studentsData.add(new StudentAccount("giusepee",1000));
+		studentsData.add(new StudentAccount("giuseppe",1000));
 		studentsData.add(new StudentAccount("solomon",500));
 		studentsData.add(new StudentAccount("carlos",0));
 		studentsData.add(new StudentAccount("waden",100));

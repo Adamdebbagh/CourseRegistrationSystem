@@ -12,7 +12,7 @@ public class RegistrationSystem {
 		// 1- on launch, show student a registration Form.
 		//    on form Submitted, send data to Registration Manager (clerk). 	
 			form.showForm();
-			double fee = accountFee.getStudentFee("giusepeee");
+			double fee = accountFee.getStudentFee("giuseppe");
 			System.out.println( "Student fee is " +fee);			
   }
 }
