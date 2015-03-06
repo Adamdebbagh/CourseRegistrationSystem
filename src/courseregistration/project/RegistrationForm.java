@@ -79,18 +79,13 @@ public class RegistrationForm extends Frame implements ActionListener{
 		if(actionEvent.getActionCommand().equals("save")){
 			message = "Registration Form saved!";
 			setForeground(Color.DARK_GRAY); 
-			
-			Student student = new Student();
-			student.sendForm(rm);
+						
+			Student.sendForm(rm);
 			rm.addStudentToList(rm.getStudentName());
-			sent = true;		   
-			
+			sent = true;		   			
 			
 		   }
 		}
-
-	
-
 
 	public void showForm() {
 		

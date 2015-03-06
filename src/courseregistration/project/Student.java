@@ -9,14 +9,18 @@ public class Student {
 	
 	//simulate database work
 	// hardCoded students transcripts
-	Course course = new Course();
+	
+	
 	String[] adamTranscript = {Course.COURSE_ID[0]};
 	String[] giuseppeTranscript = {Course.COURSE_ID[0],Course.COURSE_ID[1],Course.COURSE_ID[2]};
 	String[] carlosTranscript = {Course.COURSE_ID[1]};
 	String[] solomonTranscript = {Course.COURSE_ID[3],Course.COURSE_ID[4]};
 	String[] wadeTranscript = {Course.COURSE_ID[1],Course.COURSE_ID[3],Course.COURSE_ID[5]};
 	
-	public Student() {}
+	public Student(String name, int ssn) {
+		this.studentName = name;
+		this.studentSSN = ssn;
+	}
 
 	public String getStudentName() {
 		return studentName;
@@ -68,8 +72,33 @@ public class Student {
 		}
 		return transcript;
 		
-	}	
-	protected void sendForm(RegistrationManager rm) {
+	}
+	public String getAddress(String name){
+		String adress = null;
+		switch (name) {
+		case "adam":
+			adress = "3350 huntley,MD , USA";
+			break;
+		case "giuseppe":
+			adress = "423 brinkley,Calornia , USA";
+			break;
+		case "solomon":
+			adress = "19 broadway,NY , USA";
+			break;
+		case "carlos":
+			adress = "16 pennsylvania Ave,DC , USA";
+			break;
+		case "wade":
+			adress = "30 Fisher rd ,Carolina , USA";
+			break;
+
+		default:
+			break;
+		}
+		return adress;
+		
+	}
+	public static void sendForm(RegistrationManager rm) {
 		RegistrationForm rf = new RegistrationForm();	
 		// get student Inputs
 		   String studentName = rf.nameField.getText();

@@ -6,13 +6,15 @@ import java.util.List;
 import java.util.Map;
 // this class is a mess. it needs reconfig
 public class RegistrationManager {
-	
+	public static String[] registrationStatus = {"Not Accepted", "Not Accepted"};// or Accepted 
 	List<Pair> pairs = new ArrayList<Pair>();
 	Map<String,Pair> map = new HashMap<String,Pair>();
 	int listSize = pairs.size();
 	String studentName;
 	int 	   studentSSN ;
 	String coursePicked;
+	
+	
 	public RegistrationManager() {}
 	
 	public class Pair { 
