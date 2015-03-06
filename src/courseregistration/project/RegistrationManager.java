@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+// this class is a mess. it needs reconfig
 public class RegistrationManager {
 	
 	List<Pair> pairs = new ArrayList<Pair>();
-	Map<String,List<Pair>> map = new HashMap<String,List<Pair>>();
+	Map<String,Pair> map = new HashMap<String,Pair>();
 	int listSize = pairs.size();
 	String studentName;
 	int 	   studentSSN ;
@@ -16,18 +16,17 @@ public class RegistrationManager {
 	public RegistrationManager() {}
 	
 	public class Pair { 
+
 	   int ssn;
 	   String course;
 	    
 	    public Pair(int ssn, String course){ 
+
 	        this.ssn = ssn;
 	        this.course = course;
 	    } 
 	} 
-	
-	
-	
-	
+
 	public String getStudentName() {
 		return studentName;
 	}
@@ -50,7 +49,7 @@ public class RegistrationManager {
 	public void addStudentToList(String studentName){
 		
 		pairs.add(new Pair(studentSSN, coursePicked));
-		map.put(studentName, pairs);	
+		//map.put(studentName, pairs);	// ERRor
 		
 		System.out.println("student ssn  : " + pairs.get(pairs.size()-1).ssn);
 		System.out.println("student course : " + pairs.get(pairs.size()-1).course);
