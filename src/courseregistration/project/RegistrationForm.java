@@ -47,11 +47,12 @@ public class RegistrationForm extends Frame implements ActionListener{
 		add(ssnField);
 		add(course);
 		  
-		course.add("CS101");
-		course.add("CS102");
-		course.add("CS103");
-		course.add("CS104");
-		course.add("CS105");
+		course.add(Course.courseOffereings[0]);
+		course.add(Course.courseOffereings[1]);
+		course.add(Course.courseOffereings[2]);
+		course.add(Course.courseOffereings[3]);
+		course.add(Course.courseOffereings[4]);
+		course.add(Course.courseOffereings[5]);
 		add(button);
 		  
 		button.addActionListener(this);
@@ -78,34 +79,17 @@ public class RegistrationForm extends Frame implements ActionListener{
 		if(actionEvent.getActionCommand().equals("save")){
 			message = "Registration Form saved!";
 			setForeground(Color.DARK_GRAY); 
-			sendForm(rm);
+			
+			Student student = new Student();
+			student.sendForm(rm);
 			rm.addStudentToList(rm.getStudentName());
 			sent = true;		   
-			System.out.println("sent value after click: " + sent);
-			System.out.println("Registration submission list size : " + rm.listSize);
+			
+			
 		   }
 		}
 
-	private void sendForm(RegistrationManager rm) {
-		// get student Inputs
-		   String studentName = nameField.getText();
-		   int studentSSN = Integer.parseInt(ssnField.getText());
-		   String coursePicked = course.getSelectedItem();
-		   
-		   rm.setStudentName(studentName);
-		   rm.setStudentSSN(studentSSN);
-		   rm.setCoursePicked(coursePicked);
-		   
-		   //sanity check
-		   System.out.println("RF-student name : "+ studentName);
-		   System.out.println("RF-student ssn : "+ studentSSN);
-		   System.out.println("RF-student course : "+ coursePicked);
-		   
-		   System.out.println("RM-student name : "+ rm.getStudentName());
-		   System.out.println("RM-student ssn : "+ rm.getStudentSSN());
-		   System.out.println("RM-student course : "+ rm.getCoursePicked());
-		   
-	}
+	
 
 
 	public void showForm() {
