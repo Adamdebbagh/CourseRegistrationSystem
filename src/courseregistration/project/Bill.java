@@ -5,7 +5,7 @@ public class Bill {
 
 	public Bill() {}
 	
-	@SuppressWarnings("unused")
+	/*@SuppressWarnings("unused")
 	private void sendBill(String studentName, int ssn) {
 		Student student = new Student(studentName, ssn);
 		String name = student.getStudentName();
@@ -16,5 +16,5 @@ public class Bill {
 		System.out.println("Student Name : "+ name);
 		System.out.println("Adreess :" + address);
 		System.out.println("fee Owed :" +fee);
-	}
+	}*/
 }

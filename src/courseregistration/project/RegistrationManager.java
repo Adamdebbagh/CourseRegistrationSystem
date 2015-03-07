@@ -1,22 +1,33 @@
 package courseregistration.project;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-// this class is a mess. it needs reconfig
+//import java.util.ArrayList;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+
 public class RegistrationManager {
 	public static String[] registrationStatus = {"Not Accepted", "Not Accepted"};// or Accepted 
-	List<Pair> pairs = new ArrayList<Pair>();
-	Map<String,Pair> map = new HashMap<String,Pair>();
-	int listSize = pairs.size();
+	//List<Pair> pairs = new ArrayList<Pair>();
+	//Map<String,Pair> map = new HashMap<String,Pair>();
+	//int listSize = pairs.size();
 	String studentName;
-	int 	   studentSSN ;
+	String studentSSN ;
 	String coursePicked;
 	
 	
 	public RegistrationManager() {}
+	AccountsReceivable Acc = new AccountsReceivable();
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	////////////////
 	public class Pair { 
 
 	   int ssn;
@@ -29,26 +40,18 @@ public class RegistrationManager {
 	    } 
 	} 
 
-	public String getStudentName() {
-		return studentName;
-	}
-	public void setStudentName(String studentName) {
+
+	public void saveName(String studentName) {
 		this.studentName = studentName;
+	}	
+	public void saveSSN(String ssn) {
+		this.studentSSN = ssn;
 	}
-	public int getStudentSSN() {
-		return studentSSN;
-	}
-	public void setStudentSSN(int studentSSN) {
-		this.studentSSN = studentSSN;
-	}
-	public String getCoursePicked() {
-		return coursePicked;
-	}
-	public void setCoursePicked(String coursePicked) {
+	public void saveCoursePicked(String coursePicked) {
 		this.coursePicked = coursePicked;
 	}
 	
-	public void addStudentToList(String studentName){
+	/*public void addStudentToList(String studentName){
 		
 		pairs.add(new Pair(studentSSN, coursePicked));
 		//map.put(studentName, pairs);	// ERRor
@@ -64,7 +67,7 @@ public class RegistrationManager {
 	
 	public void deleteStudentFromList(String studentName){
 		map.remove(studentName);
-	}
+	}*/
 	
 	
 

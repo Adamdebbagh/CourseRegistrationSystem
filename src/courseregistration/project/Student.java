@@ -3,7 +3,8 @@ package courseregistration.project;
 public class Student {
 	
 	protected String studentName;
-	protected int studentSSN ;
+	protected String studentSSN ;
+	String coursePicked;
 	protected double fee;
 	protected String[] transcript;
 	
@@ -17,7 +18,8 @@ public class Student {
 	String[] solomonTranscript = {Course.COURSE_ID[3],Course.COURSE_ID[4]};
 	String[] wadeTranscript = {Course.COURSE_ID[1],Course.COURSE_ID[3],Course.COURSE_ID[5]};
 	
-	public Student(String name, int ssn) {
+	
+	public Student(String name, String ssn) {
 		this.studentName = name;
 		this.studentSSN = ssn;
 	}
@@ -30,11 +32,11 @@ public class Student {
 		this.studentName = studentName;
 	}
 
-	public int getStudentSSN() {
+	public String getStudentSSN() {
 		return studentSSN;
 	}
 
-	public void setStudentSSN(int studentSSN) {
+	public void setStudentSSN(String studentSSN) {
 
 		this.studentSSN = studentSSN;
 	}
@@ -46,7 +48,11 @@ public class Student {
 	public void setFee(double fee) {
 		this.fee = fee;
 	}
-
+	public String getcoursePicked(){
+		return RegistrationForm.coursePicked;
+	}
+	
+	
 	public String[] getTranscript(String studentName) {
 		
 		String[] transcript = new String[Course.COURSE_ID.length];
@@ -98,27 +104,25 @@ public class Student {
 		return adress;
 		
 	}
-	public static void sendForm(RegistrationManager rm) {
-		RegistrationForm rf = new RegistrationForm();	
-		// get student Inputs
-		   String studentName = rf.nameField.getText();
-		   int studentSSN = Integer.parseInt(rf.ssnField.getText());
-		   String coursePicked = rf.course.getSelectedItem();
-		   
-		   rm.setStudentName(studentName);
-		   rm.setStudentSSN(studentSSN);
-		   rm.setCoursePicked(coursePicked);
+	
+	public void sendForm() {
+		
+		RegistrationManager rm = new RegistrationManager();
+		    
+		 rm.saveName(getStudentName());
+		 rm.saveSSN(getStudentSSN());
+		 rm.saveCoursePicked(getcoursePicked());
 		   
 		   //sanity check
-		   System.out.println("RF-student name : "+ studentName);
-		   System.out.println("RF-student ssn : "+ studentSSN);
-		   System.out.println("RF-student course : "+ coursePicked);
+		   System.out.println("RF-student name : "+ getStudentName());
+		   System.out.println("RF-student ssn : "+ getStudentSSN());
+		   System.out.println("RF-student course : "+ getcoursePicked());
+		  //sanity check
+		   System.out.println("RM-student name : "+ rm.studentName);
+		   System.out.println("RM-student ssn : "+ rm.studentSSN);
+		   System.out.println("RM-student course : "+ rm.coursePicked);
 		   
-		   System.out.println("RM-student name : "+ rm.getStudentName());
-		   System.out.println("RM-student ssn : "+ rm.getStudentSSN());
-		   System.out.println("RM-student course : "+ rm.getCoursePicked());
-		   
-		   System.out.println("Registration submission list size : " + rm.listSize);
+		   //System.out.println("Registration submission list size : " + rm.listSize);
 		   
 	}
 }

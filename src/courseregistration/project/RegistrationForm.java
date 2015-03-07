@@ -18,7 +18,8 @@ public class RegistrationForm extends Frame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	protected String message = "";
-	public static boolean sent;
+	public static boolean sent = false;
+	
 	
 	private Label  titleLabel  = new Label("Registration Form",Label.CENTER);
 	private Label  nameLabel = new Label("Name:",Label.LEFT);
@@ -29,6 +30,7 @@ public class RegistrationForm extends Frame implements ActionListener{
 	public TextField nameField = new TextField();
 	public TextField ssnField = new TextField();
 	public Choice course = new Choice();
+	public static String coursePicked;
 	  
 
 	public RegistrationForm() {
@@ -74,14 +76,16 @@ public class RegistrationForm extends Frame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		RegistrationManager rm = new RegistrationManager();
+		
+		Student student = new Student(nameField.getText(),ssnField.getText());
+		coursePicked = course.getSelectedItem();
 		
 		if(actionEvent.getActionCommand().equals("save")){
 			message = "Registration Form saved!";
-			setForeground(Color.DARK_GRAY); 
-						
-			Student.sendForm(rm);
-			rm.addStudentToList(rm.getStudentName());
+			setForeground(Color.DARK_GRAY); 				
+			student.sendForm();
+			//rm.addStudentToList(rm.getStudentName());
+			System.out.println( student.getStudentName() +"'s registration Form is sent to Registration Office");	
 			sent = true;		   			
 			
 		   }
