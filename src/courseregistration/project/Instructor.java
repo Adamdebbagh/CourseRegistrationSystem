@@ -1,11 +1,13 @@
 package courseregistration.project;
 
-public class Instructor {
+import java.util.ArrayList;
+import java.util.List;
 
-	public Instructor() {
-		// TODO Auto-generated constructor stub
-	}
-public void showInstructorReport() {
-	
-}
+public class Instructor {
+    public static List<String> studentsEnrolled = new ArrayList<String>();
+    public Instructor() {}
+    
+    public static void addStudentEnrooledToInstructorList(String name) {
+    studentsEnrolled.add(name);	
+    }
 }
