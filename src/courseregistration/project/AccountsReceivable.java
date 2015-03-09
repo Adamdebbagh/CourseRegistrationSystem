@@ -4,48 +4,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountsReceivable {
-	// this Class interfaces an Accounting database residing on a remote server.
+	
+        // this Class interfaces an Accounting database residing on a remote server.
 	// i am only going to emulate its function in the simplest way !  
-	
 	//fake database. represented as an arrayList of { names & fees } 
-
-	public class StudentAccount {
-	protected double feeOwed;
-	protected String name;
+        
+    List<StudentBalance> studentsBalance = new ArrayList<StudentBalance>();
 	
-	public StudentAccount(String name,double feeOwed){	
-		this.name = name;
-		this.feeOwed = feeOwed;
-		}
+    public class StudentBalance {
+        protected double feeOwed;
+        protected String name;
+        
+    public StudentBalance(String name,double feeOwed){	
+	this.name = name;
+	this.feeOwed = feeOwed;
 	}
+    }
+    public AccountsReceivable() {
+        studentsBalance.add(new StudentBalance("adam",0));
+        studentsBalance.add(new StudentBalance("giuseppe",0));
+	studentsBalance.add(new StudentBalance("solomon",0));
+	studentsBalance.add(new StudentBalance("carlos",0));
+	studentsBalance.add(new StudentBalance("wade",750.89));}	
+    public double getStudentFee(String name){
 		
-	List<StudentAccount> studentsData = new ArrayList<StudentAccount>();
-
-	public AccountsReceivable() {
-
-		studentsData.add(new StudentAccount("adam",0));
-		studentsData.add(new StudentAccount("giuseppe",1000));
-		studentsData.add(new StudentAccount("solomon",500));
-		studentsData.add(new StudentAccount("carlos",0));
-		studentsData.add(new StudentAccount("waden",100));
+	for(StudentBalance student:studentsBalance){
+            // if student exist, then check his balance
+            if(student.name.equals(name)){
+		if (student.feeOwed != 0){
+                    return student.feeOwed;
+		}else{
+                    System.out.println("student does not owe anything");	
+                    return 0;
+		}
+            }		
 	}
+	return -1;
+		
+	}
+    protected void sendBill(String studentName, String adress, double fee) {
 	
-	public double getStudentFee(String studentName){
-		
-		for(StudentAccount student:studentsData){
-			// if student exist, then check his balance
-			if(studentName == student.name){
-				if (student.feeOwed != 0){
-					return student.feeOwed;
-				}else{
-					System.out.println("student does not owe anything");	
-					return 0;
-				}
-			}		
-		}
-		System.out.println("student does not exist in the database");
-		return 0;
-		
-	}
+        System.out.println("Bill sent to : ");
+        System.out.println("Student Name : "+ studentName );
+        System.out.println("Adreess :" + adress);
+        System.out.println("fee Owed :" +fee);
+    }
 		
 }
