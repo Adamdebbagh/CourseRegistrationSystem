@@ -78,49 +78,57 @@ public class RegistrationForm extends Frame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        String nameInput = nameField.getText();
+        nameInput = nameInput.toLowerCase();
+        String ssnInput = ssnField.getText();
+        ssnInput = ssnInput.toLowerCase();
 
-        Student student = new Student(nameField.getText(),ssnField.getText());
-        coursePicked = course.getSelectedItem();
-        double feeOwed = acc.getStudentFee(student.getStudentName());
-        String courseSelected = student.getcoursePicked();
-        String[] studentTranscript = student.getTranscript(student.getStudentName());     
-        Course course = new Course();
-        String coursePrerequite = course.getCoursePrequisites(courseSelected); 
-
+        
         if(actionEvent.getActionCommand().equals("save")){
+            // validate Form Entry
+            if((nameInput !=null && !nameInput.isEmpty()) && (ssnInput !=null && !ssnInput.isEmpty()) ){
+           
+                Student student = new Student(nameInput,ssnInput);
+                coursePicked = course.getSelectedItem();
+                double feeOwed = acc.getStudentFee(student.getStudentName());
+                String courseSelected = student.getcoursePicked();
+                String[] studentTranscript = student.getTranscript(student.getStudentName());     
+                Course course = new Course();
+                String coursePrerequite = course.getCoursePrequisites(courseSelected); 
+
+                
+                System.out.println("###############");
+                System.out.println("Registration Process");
+                System.out.println("###############\n");
             
-            System.out.println("###############");
-            System.out.println("Registration Process");
-            System.out.println("###############\n");
+                //student sends form
+                student.sendForm();
             
-            //student sends form
-            student.sendForm();
-            
-            //sanity check
-            System.out.println( student.getStudentName() +"'s registration Form is sent to Registration Office");
-            System.out.println("Student name : "+ student.getStudentName());
-            System.out.println("Student ssn : "+ student.getStudentSSN());
-            System.out.println("Course Picked : "+ student.getcoursePicked());
+                //sanity check
+                System.out.println( student.getStudentName() +"'s registration Form is sent to Registration Office");
+                System.out.println("Student name : "+ student.getStudentName());
+                System.out.println("Student ssn : "+ student.getStudentSSN());
+                System.out.println("Course Picked : "+ student.getcoursePicked());
 		  
-            // inform student that registration form is saved
-            showSaveMessage(); 
+                // inform student that registration form is saved
+                showSaveMessage("Registration Form saved!"); 
             
-            // check account receivable
-            System.out.println("\n >>>>Checking student account Receivable...\n");
+                // check account receivable
+                System.out.println("\n >>>>Checking student account Receivable...\n");
               
-            if(feeOwed == 0){
-               System.out.println(student.getStudentName()+"'s fee from last quarter is "+feeOwed); 
+                if(feeOwed == 0){
+                    System.out.println(student.getStudentName()+"'s fee from last quarter is "+feeOwed); 
                
-               //check student transcript against course preRequisite
-               System.out.println("\n >>>>Checking student transcript against course preRequisite... \n");
+                    //check student transcript against course preRequisite
+                    System.out.println("\n >>>>Checking student transcript against course preRequisite... \n");
                
-               Set<String> set = new HashSet<String>(Arrays.asList(studentTranscript));
+                    Set<String> set = new HashSet<String>(Arrays.asList(studentTranscript));
                
-               if(set.contains(coursePrerequite) || coursePrerequite.contains("none")){
-                    System.out.println("course,  prerequisite(s) completed");
+                    if(set.contains(coursePrerequite) || coursePrerequite.contains("none")){
+                        System.out.println("course,  prerequisite(s) completed");
                     
-                    //check class position availability
-                    System.out.println("\n >>>>Checking class position availability...\n");
+                        //check class position availability
+                        System.out.println("\n >>>>Checking class position availability...\n");
                     
                     if(currentClass.isPositionAvailable()){
                         currentClass.addStudentToClass(student);
@@ -150,11 +158,14 @@ public class RegistrationForm extends Frame implements ActionListener{
                 acc.sendBill(student.getStudentName(), student.getAddress(student.getStudentName()), feeOwed);
                 result.showAcknowlegement(student.getStudentName(), feeOwed);
             }
-       }
+       } 
+            else {
+            showSaveMessage("Oops!Please Enter Valid name & SSN");
+        }}
     }   
 
-    private void showSaveMessage() {
-        message = "Registration Form saved!";
+    private void showSaveMessage(String msg) {
+        message = msg;
         setForeground(Color.DARK_GRAY);
     }
     public void showForm() {
@@ -171,7 +182,6 @@ public class RegistrationForm extends Frame implements ActionListener{
                      System.exit(0);
             }
     }
-
 	
 }
 
